@@ -10,7 +10,7 @@ class StudentSignUpForm(UserCreationForm):
 
   class Meta(UserCreationForm.Meta):
     model = User
-    fields = ('username','email',)
+    # fields = ('username','email',)
 
   @transaction.atomic
   def save(self):
@@ -45,4 +45,19 @@ class TeacherSignUpForm(UserCreationForm):
     teacher.save()
     return teacher
 
+
+class LoginForm(forms.Form):
+  username = forms.CharField(max_length=30, required=True)
+  password = forms.CharField(max_length=32, widget=forms.PasswordInput)
+  
+
+  class Meta:
+        model = User
+        fields = ('username', 'password',)
+
+
+
+
+
+    
   
