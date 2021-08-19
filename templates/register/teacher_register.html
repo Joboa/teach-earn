@@ -1,11 +1,24 @@
-{% extends 'base.html' %}
 
+
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block head_title %}{% trans "Signup" %}{% endblock %}
 {% block content %}
-<h2>Register as a Teacher</h2>
-<form action="{% url 'teacher_register' %}" method="POST" novalidate>
-  {% csrf_token %}
-  {{ form.as_table }}
-  <button type="submit">register teacher</button>
-</form>
+<h1>Teacher</h1>
+<h1>{% trans "Sign Up" %}</h1>
 
+<!-- <p>{% blocktrans %}Already have an account? Then please <a href="{{ login_url }}">sign in</a>.{% endblocktrans %}</p> -->
+<p>Already have an account? Then please <a href="{% url 'login_view' %}">sign in</a>.</p>
+
+<form method="post" action="{% url 'teacher_register' %}">
+  {% csrf_token %}
+  {{ form.as_p }}
+  {% if redirect_field_value %}
+    <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+  {% endif %}
+  <button type="submit">{% trans "Register Teacher" %} &raquo;</button>
+</form>
 {% endblock content %}
+
+
