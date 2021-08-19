@@ -1,63 +1,44 @@
-from django.contrib.auth.forms import UserCreationForm
+# from django.contrib.auth.forms import UserCreationForm
+from allauth.account.forms import SignupForm
 from django.db import transaction
 from .models import User, Student, Teacher
 from django import forms
 
-class StudentSignUpForm(UserCreationForm):
-  course = forms.CharField(required=True)
-  phone_number = forms.CharField(required=True)
-  comment = forms.CharField(required=True)
 
-  class Meta(UserCreationForm.Meta):
-    model = User
-    # fields = ('username','email',)
+class StudentSignUpForm(SignupForm):
+    
+    class Meta:
+        model = User
 
-  @transaction.atomic
-  def save(self):
-    user = super().save(commit=False)
-    user.is_student = True
-    user.course = self.cleaned_data.get('course')
-    user.save()
-    student = Student.objects.create(user=user)
-    student.phone_number = self.cleaned_data.get('phone_number')
-    student.comment = self.cleaned_data.get('comment') 
-    student.save()
-    return student
+    @transaction.atomic
+    def save(self, request):
+        user = super(StudentSignUpForm, self).save(request)
+        user.is_student = True
+        user.save()
+        student = Student.objects.create(user=user)
+        student.save()
+        return user
 
 
-class TeacherSignUpForm(UserCreationForm):
-  course = forms.CharField(required=True) 
-  phone_number = forms.CharField(required=True)
-  hostel = forms.CharField(required=True)
+class TeacherSignUpForm(SignupForm):
+ 
+    class Meta:
+        model = User
 
-  class Meta(UserCreationForm.Meta):
-    model = User
-
-  @transaction.atomic
-  def save(self):
-    user = super().save(commit=False)
-    user.is_teacher = True
-    user.course = self.cleaned_data.get('course')
-    user.save()
-    teacher = Teacher.objects.create(user=user)
-    teacher.phone_number = self.cleaned_data.get('phone_number')
-    teacher.hostel = self.cleaned_data.get('hostel')
-    teacher.save()
-    return teacher
+    @transaction.atomic
+    def save(self, request):
+        user = super(TeacherSignUpForm, self).save(request)
+        user.is_teacher = True
+        user.save()
+        teacher = Teacher.objects.create(user=user)
+        teacher.save()
+        return user
 
 
 class LoginForm(forms.Form):
-  username = forms.CharField(max_length=30, required=True)
-  password = forms.CharField(max_length=32, widget=forms.PasswordInput)
-  
+    username = forms.CharField(max_length=30, required=True)
+    password = forms.CharField(max_length=32, widget=forms.PasswordInput)
 
-  class Meta:
+    class Meta:
         model = User
         fields = ('username', 'password',)
-
-
-
-
-
-    
-  
