@@ -26,8 +26,6 @@ class student_register(SignupView):
     model = User
     form_class = StudentSignUpForm
     success_url = reverse_lazy('verify_account')
-    # redirect_field_name = 'next'
-    # success_url = None
     template_name = 'register/student_register.html'
 
     def get_context_data(self, **kwargs):
@@ -50,6 +48,10 @@ class teacher_register(SignupView):
         ret['user_type'] = "is_teacher"
         return ret
 
+
+"""
+Verify account
+"""
 class verification_sent(TemplateView):
     template_name = 'account/verification_sent.html'
 
@@ -89,3 +91,5 @@ Teacher profile page
 """
 class TeacherProfileView(TemplateView):
     template_name = 'teacher_page.html'
+
+
