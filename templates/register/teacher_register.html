@@ -3,12 +3,11 @@
 {% extends "base.html" %}
 {% load i18n %}
 
-{% block head_title %}{% trans "Signup" %}{% endblock %}
+{% block title %}Teacher Signup Form{% endblock title %}
 {% block content %}
 <h1>Teacher</h1>
 <h1>{% trans "Sign Up" %}</h1>
 
-<!-- <p>{% blocktrans %}Already have an account? Then please <a href="{{ login_url }}">sign in</a>.{% endblocktrans %}</p> -->
 <p>Already have an account? Then please <a href="{% url 'login_view' %}">sign in</a>.</p>
 
 <form method="post" action="{% url 'teacher_register' %}">

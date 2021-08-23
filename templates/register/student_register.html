@@ -3,12 +3,13 @@
 {% extends "base.html" %}
 {% load i18n %}
 
-{% block head_title %}{% trans "Signup" %}{% endblock %}
+{% block title %}Student Signup Form{% endblock title %}
 {% block content %}
 <h1>Student</h1>
 <h1>{% trans "Sign Up" %}</h1>
 
-<p>{% blocktrans %}Already have an account? Then please <a href="{% url 'login_view' %}">sign in</a>.{% endblocktrans %}</p>
+
+<p>Already have an account? Then please <a href="{% url 'login_view' %}">sign in</a>.</p>
 
 <form method="post" action="{% url 'student_register' %}">
   {% csrf_token %}
