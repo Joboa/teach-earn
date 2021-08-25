@@ -1,3 +1,22 @@
 h1 {
   color: rgb(97, 97, 145);
 }
+
+.btn-primary {
+  color: #fff;
+  background-color: green;
+  border-color: #0d6efd;
+}
+
+/* .std {
+  display: grid;
+  grid-template-columns: 50% 50%;
+}
+
+.std > .std-1 {
+  background-color: #000;
+}
+
+.std > .std-2 {
+  background-color: #74D0ED;
+} */
