@@ -52,6 +52,7 @@ INSTALLED_APPS = [
 
     # own
     'accounts.apps.AccountsConfig',
+    'pages.apps.PagesConfig',
 ]
 
 MIDDLEWARE = [
@@ -148,16 +149,16 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = 'accounts.User'
 
+# django-allauth configuration
 LOGIN_REDIRECT_URL = 'login_view'
 # LOGOUT_REDIRECT_URL = 'home'
 ACCOUNT_LOGOUT_REDIRECT = 'home'
-# ACCOUNT_AUTHENTICATION_METHOD = 'email'
+ACCOUNT_AUTHENTICATION_METHOD = 'email'
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_UNIQUE_EMAIL = True
 ACCOUNT_SESSION_REMEMBER = True
 ACCOUNT_SIGNUP_PASSWORD_ENTER_TWICE = False
-# ACCOUNT_SIGNUP_REDIRECT_URL = "login_view"
 
-
-# django-allauth configuration
 
 #  Django authentication backend
 SITE_ID = 1
