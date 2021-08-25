@@ -6,8 +6,3 @@ def redirect_to_profile_page(user):
         return 'student_page'
     else:
         return 'teacher_page' 
-
-aa = redirect_to_profile_page(new_cred.is_student)
-print(aa)
-
-print('hello JOhn .............................................')

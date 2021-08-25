@@ -1,22 +1,17 @@
 from django.shortcuts import redirect, render
-from django.views.generic import CreateView, TemplateView
+from django.views.generic import TemplateView
 from allauth.account.views import SignupView
 from django.contrib.auth import login, authenticate
 from django.urls import reverse_lazy
 from .models import User
 from .forms import StudentSignUpForm, TeacherSignUpForm, LoginForm
 
-"""
-Home page
-"""
-class HomeView(TemplateView):
-    template_name = 'home.html'
 
-"""
-Register a person (student or teacher)
-"""
-def register(request):
-    return render(request, template_name="register/register.html")
+# """
+# Register a person (student or teacher)
+# """
+# def register(request):
+#     return render(request, template_name="register/register.html")
 
 
 """
